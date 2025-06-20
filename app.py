@@ -1,15 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
 import os
+from flask import Flask
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return "Hello from Render!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))  # 🔹 Use the PORT variable
+    app.run(host='0.0.0.0', port=port)        # 🔹 Bind to 0.0.0.0 so Render can access it
